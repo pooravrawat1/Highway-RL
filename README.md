@@ -1,17 +1,68 @@
-# Highway-RL
+# Autonomous Highway Navigation via Deep Q-Learning
 
-Autonomous vehicle navigation using Deep Reinforcement Learning. Built with highway-env and Stable Baselines3.
+This project explores autonomous highway driving using Deep Q-Learning (DQN) in a stochastic multi-lane traffic environment. The focus is on understanding how reward design and algorithmic choices influence learned driving behavior, rather than maximizing reward alone.
 
-## Results
+The project is intentionally **work-in-progress** and structured to support systematic experimentation and ablation studies.
 
-The DQN agent was trained for 100,000 timesteps on the Highway-v0 environment.
+---
 
-### Training Curves
+## Objective
 
-<p align="center">
-  <img src="assets/ep_len_mean.png" width="450">
-  <img src="assets/ep_rew_mean.png" width="450">
-</p>
+Train a reinforcement learning agent that can:
 
-The agent exhibits rapid early learning within the first 10k timesteps, followed by convergence.
-The strong correlation between episode length and reward indicates a survival-based reward structure.
+- Avoid collisions (safety)
+- Maintain high but controlled speed (efficiency)
+- Minimize unnecessary lane changes (driving convention)
+
+The agent must balance these competing objectives under stochastic traffic conditions.
+
+---
+
+## Environment
+
+- **Simulator:** `highway-env` (`highway-fast-v0`)
+- **Framework:** Gymnasium
+- **Traffic Model:** IDM-based surrounding vehicles
+- **Lanes:** 3
+- **Episode Duration:** 30 seconds
+
+### Observation Space
+
+Kinematic observations of nearby vehicles (relative position and velocity).
+
+### Action Space
+
+Discrete meta-actions:
+
+- Lane left / lane right
+- Accelerate / decelerate
+- Maintain speed
+
+---
+
+## Algorithm & Stack
+
+- **Algorithm:** Deep Q-Network (DQN)
+- **Framework:** Stable Baselines3 (PyTorch)
+- **Policy Network:** MLP with two hidden layers (256 units each)
+- **Replay Buffer:** 15,000 transitions
+- **Optimizer:** Adam
+- **Exploration:** ε-greedy decay
+- **Target Network:** Periodic updates
+
+---
+
+## Reward Design (Current)
+
+The reward function is designed to discourage exploitation and promote stable behavior.
+
+```python
+HIGH_SPEED_LANE_CONFIG = {
+    "collision_reward": -2.0,
+    "high_speed_reward": 0.1,
+    "lane_change_reward": -0.05,
+    "right_lane_reward": 0.0,
+    "reward_speed_range": [25, 30],
+    "normalize_reward": False
+}
+```

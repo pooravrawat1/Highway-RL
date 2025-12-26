@@ -1,6 +1,7 @@
 import os
 import gymnasium as gym
 import highway_env
+from config import HIGH_SPEED_LANE_CONFIG
 
 from stable_baselines3 import DQN
 from stable_baselines3.common.monitor import Monitor
@@ -9,9 +10,9 @@ from stable_baselines3.common.utils import set_random_seed
 ENV_ID = "highway-fast-v0"
 SEED = 42
 
-TOTAL_TIMESTEPS = 100_000
+TOTAL_TIMESTEPS = 50000
 
-LOG_DIR = "logs/baseline/"
+LOG_DIR = "logs/high_speed_lane/"
 MODEL_DIR = "agents/"
 
 os.makedirs(LOG_DIR, exist_ok=True)
@@ -19,6 +20,7 @@ os.makedirs(MODEL_DIR, exist_ok=True)
 
 def make_env():
     env = gym.make(ENV_ID)
+    env.unwrapped.configure(HIGH_SPEED_LANE_CONFIG)
     env = Monitor(env, LOG_DIR)
     env.reset(seed=SEED)
     return env
@@ -48,16 +50,16 @@ model = DQN(
     train_freq=1,
     gradient_steps=1,
 
-    tensorboard_log=LOG_DIR,
+    tensorboard_log="logs/high_speed_lane",
     verbose=1,
 
     seed=SEED
 )
 
 
-model.learn(total_timesteps=TOTAL_TIMESTEPS, tb_log_name="dqn_baseline")
+model.learn(total_timesteps=TOTAL_TIMESTEPS, tb_log_name="dqn_high_speed")
 
-model_path = os.path.join(MODEL_DIR, "dqn_baseline")
+model_path = os.path.join(MODEL_DIR, "dqn_high_speed")
 model.save(model_path)
 print(f"Model saved to {model_path}")
 
