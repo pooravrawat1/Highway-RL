@@ -69,3 +69,21 @@ HIGH_SPEED_LANE_CONFIG = {
     "normalize_reward": False,
     "offroad_terminal": False
 }
+
+OBS_3_VEHICLES_CONFIG = {
+    **HIGH_SPEED_LANE_CONFIG,
+    "observation": {
+        "type": "Kinematics",
+        "vehicles_count": 3,
+        "normalize": True
+    }
+}
+
+OBS_7_VEHICLES_CONFIG = {
+    **HIGH_SPEED_LANE_CONFIG,
+    "observation": {
+        "type": "Kinematics",
+        "vehicles_count": 7,
+        "normalize": True
+    }
+}
