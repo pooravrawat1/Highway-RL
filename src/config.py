@@ -60,15 +60,16 @@ HIGH_SPEED_LANE_CONFIG = {
     "controlled_vehicles": 1,
     "duration": 30,
 
-    "collision_reward": -2.0,
-    "right_lane_reward": 0.0,
+    "collision_reward": -5.0,
+    "right_lane_reward": 0.02,
     "high_speed_reward": 0.1,
-    "lane_change_reward": -0.05,
+    "lane_change_reward": 0.05,
     "reward_speed_range": [25, 30],
 
     "normalize_reward": False,
-    "offroad_terminal": False
+    "offroad_terminal": True
 }
+
 
 OBS_3_VEHICLES_CONFIG = {
     **HIGH_SPEED_LANE_CONFIG,
@@ -80,10 +81,28 @@ OBS_3_VEHICLES_CONFIG = {
 }
 
 OBS_7_VEHICLES_CONFIG = {
-    **HIGH_SPEED_LANE_CONFIG,
     "observation": {
-        "type": "Kinematics",
-        "vehicles_count": 7,
-        "normalize": False
-    }
+        "type": "Kinematics"
+    },
+    "action": {
+        "type": "DiscreteMetaAction"
+    },
+
+    "simulation_frequency": 10,
+    "policy_frequency": 1,
+
+    "lanes_count": 3,
+    "vehicles_count": 20,
+    "controlled_vehicles": 1,
+    "duration": 30,
+
+    "collision_reward": -5.0,     
+    "right_lane_reward": 0.0,     
+    "high_speed_reward": 0.1,     
+    "lane_change_reward": 0.1, 
+
+    "reward_speed_range": [25, 30],
+
+    "normalize_reward": True,  
+    "offroad_terminal": False
 }
