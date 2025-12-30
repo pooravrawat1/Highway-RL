@@ -84,6 +84,6 @@ OBS_7_VEHICLES_CONFIG = {
     "observation": {
         "type": "Kinematics",
         "vehicles_count": 7,
-        "normalize": True
+        "normalize": False
     }
 }

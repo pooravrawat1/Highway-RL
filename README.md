@@ -52,17 +52,21 @@ Discrete meta-actions:
 
 ---
 
-## Reward Design (Current)
+### Experiments
 
-The reward function is designed to discourage exploitation and promote stable behavior.
+The project follows a controlled experimental progression to evaluate learning stability and behavior emergence in autonomous highway navigation:
 
-```python
-HIGH_SPEED_LANE_CONFIG = {
-    "collision_reward": -2.0,
-    "high_speed_reward": 0.1,
-    "lane_change_reward": -0.05,
-    "right_lane_reward": 0.0,
-    "reward_speed_range": [25, 30],
-    "normalize_reward": False
-}
-```
+1. **Baseline DQN Training**  
+   A Double DQN agent was trained to verify basic learning capability in the highway environment.
+
+2. **Reward Shaping Ablations**  
+   The right-lane reward was removed to isolate survival and speed incentives. Speed reward scaling and lane-change penalties were introduced to discourage unnecessary weaving while preserving efficiency.
+
+3. **Reward Normalization Study**  
+   Training runs with and without reward normalization demonstrated that normalization is critical for stable DQN learning in this environment.
+
+4. **Optimization Stability Analysis**  
+   The DQN learning rate was reduced to mitigate late-stage instability. While smoother convergence was observed, significant policy degradation persisted, indicating algorithmic rather than hyperparameter-level limitations.
+
+5. **Algorithm Comparison (PPO)**  
+   PPO is introduced as an on-policy baseline to evaluate whether replay-free learning improves stability and long-horizon performance under identical task settings.

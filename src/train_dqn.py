@@ -7,8 +7,8 @@ from config import (
     OBS_7_VEHICLES_CONFIG
 )
 
-CONFIG = OBS_3_VEHICLES_CONFIG
-RUN_NAME = "obs_3_vehicles"
+CONFIG = OBS_7_VEHICLES_CONFIG
+RUN_NAME = "lane_penalty_lr"
 
 
 from stable_baselines3 import DQN
@@ -20,7 +20,7 @@ SEED = 42
 
 TOTAL_TIMESTEPS = 50000
 
-LOG_DIR = "logs/obs_3_vehicles/"
+LOG_DIR = "logs/lane_penalty/"
 MODEL_DIR = "agents/"
 
 os.makedirs(LOG_DIR, exist_ok=True)
@@ -41,7 +41,7 @@ model = DQN(
     policy="MlpPolicy",
     env=env,
 
-    learning_rate=1e-3,
+    learning_rate=5e-4,
     batch_size=64,
     gamma=0.99,
 
@@ -58,7 +58,7 @@ model = DQN(
     train_freq=1,
     gradient_steps=1,
 
-    tensorboard_log="logs/obs_3_vehicles",
+    tensorboard_log="logs/lane_penalty",
     verbose=1,
 
     seed=SEED
@@ -74,6 +74,7 @@ print(f"Model saved to {model_path}")
 print("Quick evaluation rollout...")
 
 eval_env = gym.make(ENV_ID, render_mode="human")
+eval_env.unwrapped.configure(CONFIG)
 obs, _ = eval_env.reset(seed=SEED)
 
 for step in range(300):
