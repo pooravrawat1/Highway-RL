@@ -60,14 +60,15 @@ HIGH_SPEED_LANE_CONFIG = {
     "controlled_vehicles": 1,
     "duration": 30,
 
-    "collision_reward": -5.0,
-    "right_lane_reward": 0.02,
+    "collision_reward": -2.0,
+    "right_lane_reward": 0.0,
     "high_speed_reward": 0.1,
     "lane_change_reward": 0.05,
+    "reward_close_vehicle": -0.2,
     "reward_speed_range": [25, 30],
 
     "normalize_reward": False,
-    "offroad_terminal": True
+    "offroad_terminal": False
 }
 
 

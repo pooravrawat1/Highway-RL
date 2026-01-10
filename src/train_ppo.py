@@ -10,9 +10,9 @@ from stable_baselines3.common.utils import set_random_seed
 
 ENV_ID = "highway-fast-v0"
 SEED = 42
-TOTAL_TIMESTEPS = 50_000
+TOTAL_TIMESTEPS = 50000
 
-LOG_DIR = "logs/ppo_high_speed/"
+LOG_DIR = "logs/ppo_smart_lane_v1/"
 MODEL_DIR = "agents/"
 
 os.makedirs(LOG_DIR, exist_ok=True)
@@ -50,10 +50,10 @@ model = PPO(
 
 model.learn(
     total_timesteps=TOTAL_TIMESTEPS,
-    tb_log_name="ppo_high_speed"
+    tb_log_name="ppo_smart_lane_v1"
 )
 
-model_path = os.path.join(MODEL_DIR, "ppo_high_speed")
+model_path = os.path.join(MODEL_DIR, "ppo_smart_lane_v1")
 model.save(model_path)
 print(f"Model saved to {model_path}")
 
