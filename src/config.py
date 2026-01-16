@@ -52,24 +52,26 @@ HIGH_SPEED_LANE_CONFIG = {
     "observation": {"type": "Kinematics"},
     "action": {"type": "DiscreteMetaAction"},
 
-    "simulation_frequency": 10,
-    "policy_frequency": 1,
+    "simulation_frequency": 15,
+    "policy_frequency": 5,
 
     "lanes_count": 3,
-    "vehicles_count": 20,
+    "vehicles_count": 25,
     "controlled_vehicles": 1,
-    "duration": 30,
+    "duration": 40,
 
-    "collision_reward": -2.0,
-    "right_lane_reward": 0.0,
-    "high_speed_reward": 0.1,
-    "lane_change_reward": 0.05,
-    "reward_close_vehicle": -0.2,
-    "reward_speed_range": [25, 30],
+    # CRITICAL FIXES
+    "collision_reward": -5.0,        # crashing must be catastrophic
+    "right_lane_reward": 0.1,        # reward choosing free lanes
+    "high_speed_reward": 0.2,        # reward survival while fast
+    "lane_change_reward": 0.3,       # lane changes must be worth risk
 
-    "normalize_reward": False,
-    "offroad_terminal": False
+    "reward_speed_range": [20, 35],
+
+    "normalize_reward": True,        # PPO MUST have this on
+    "offroad_terminal": True
 }
+
 
 
 OBS_3_VEHICLES_CONFIG = {
