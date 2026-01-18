@@ -60,15 +60,14 @@ HIGH_SPEED_LANE_CONFIG = {
     "controlled_vehicles": 1,
     "duration": 40,
 
-    # CRITICAL FIXES
-    "collision_reward": -5.0,        # crashing must be catastrophic
-    "right_lane_reward": 0.1,        # reward choosing free lanes
-    "high_speed_reward": 0.2,        # reward survival while fast
-    "lane_change_reward": 0.3,       # lane changes must be worth risk
+    "collision_reward": -5.0,       
+    "right_lane_reward": 0.1,        
+    "high_speed_rewad": 0.2,       
+    "lane_change_reward": 0.3,
 
     "reward_speed_range": [20, 35],
 
-    "normalize_reward": True,        # PPO MUST have this on
+    "normalize_reward": True,      
     "offroad_terminal": True
 }
 
