@@ -10,7 +10,7 @@ from stable_baselines3.common.utils import set_random_seed
 
 ENV_ID = "highway-fast-v0"
 SEED = 42
-TOTAL_TIMESTEPS = 50000
+TOTAL_TIMESTEPS = 30000
 
 LOG_DIR = "logs/ppo_smart_lane_v1/"
 MODEL_DIR = "agents/"
