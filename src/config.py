@@ -52,7 +52,7 @@ HIGH_SPEED_LANE_CONFIG = {
 
     "observation": {
         "type": "Kinematics",
-        "vehicles_count": 15,
+        "vehicles_count": 30,
         "features": ["presence", "x", "y", "vx", "vy", "heading"],
         "normalize": True
     },
@@ -70,8 +70,8 @@ HIGH_SPEED_LANE_CONFIG = {
     "collision_reward": -2.0,
     "right_lane_reward": 0.1,
     "high_speed_reward": 0.4,
-    "lane_change_reward": 0.03,
-    "reward_speed_range": [25, 30],
+    "lane_change_reward": 0.015,
+    "reward_speed_range": [27, 30],
 
     "normalize_reward": True,
     "offroad_terminal": False
