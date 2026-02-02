@@ -65,7 +65,7 @@ HIGH_SPEED_LANE_CONFIG = {
     "lanes_count": 3,
     "vehicles_count": 30,
     "controlled_vehicles": 1,
-    "duration": 30,
+    "duration": 60,
 
     "collision_reward": -2.0,
     "right_lane_reward": 0.1,
