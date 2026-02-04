@@ -60,18 +60,18 @@ HIGH_SPEED_LANE_CONFIG = {
     "action": {"type": "DiscreteMetaAction"},
 
     "simulation_frequency": 10,
-    "policy_frequency": 1,
+    "policy_frequency": 2,
 
     "lanes_count": 3,
     "vehicles_count": 30,
     "controlled_vehicles": 1,
     "duration": 60,
 
-    "collision_reward": -2.0,
-    "right_lane_reward": 0.1,
-    "high_speed_reward": 0.4,
-    "lane_change_reward": 0.015,
-    "reward_speed_range": [27, 30],
+    "collision_reward": -5.0,
+    "right_lane_reward": 0.0,
+    "high_speed_reward": 0.5,
+    "lane_change_reward": 0.0,
+    "reward_speed_range": [25, 30],
 
     "normalize_reward": True,
     "offroad_terminal": False

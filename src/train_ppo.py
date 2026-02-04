@@ -10,7 +10,7 @@ from stable_baselines3.common.utils import set_random_seed
 
 ENV_ID = "highway-fast-v0"
 SEED = 42
-TOTAL_TIMESTEPS = 30000
+TOTAL_TIMESTEPS = 200000
 
 LOG_DIR = "logs/ppo_smart_lane_v1/"
 MODEL_DIR = "agents/"
@@ -41,7 +41,7 @@ model = PPO(
     gae_lambda=0.95,
 
     clip_range=0.2,
-    ent_coef=0.0,
+    ent_coef=0.01,
 
     tensorboard_log=LOG_DIR,
     verbose=1,
