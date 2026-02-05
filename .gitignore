@@ -46,6 +46,7 @@ logs/
 
 # Model checkpoints and agents
 agents/
+!agents/ppo_smart_lane_v1.zip
 *.pth
 *.pkl
 *.h5
